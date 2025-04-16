@@ -18,7 +18,7 @@ services:
     restart: unless-stopped
     volumes:
       - mariadb-data:/var/lib/mysql # Persistent data volume
-      # Note: Removed init script volume mount for production
+      - ./db:/docker-entrypoint-initdb.d
     env_file:
       - .env # Load production environment variables
     environment:
@@ -30,4 +30,4 @@ services:
 
 volumes:
   mariadb-data:
-    # Consider adding external: true if managing the volume outside compose 
+    # Consider adding external: true if managing the volume outside compose
