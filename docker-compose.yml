@@ -1,0 +1,33 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    ports:
+      - "80:80" # Map host port 80 to container port 80
+    env_file:
+      - .env # Load production environment variables
+    restart: unless-stopped
+    depends_on:
+      - db
+    # Note: No code volume mount for production
+
+  db:
+    image: mariadb:10.4
+    restart: unless-stopped
+    volumes:
+      - mariadb-data:/var/lib/mysql # Persistent data volume
+      # Note: Removed init script volume mount for production
+    env_file:
+      - .env # Load production environment variables
+    environment:
+      # Read values from .env file
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+
+volumes:
+  mariadb-data:
+    # Consider adding external: true if managing the volume outside compose 

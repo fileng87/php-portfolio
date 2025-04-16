@@ -1,0 +1,43 @@
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      target: devcontainer
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_NAME=portfolio
+      - DB_USER=admin
+      - DB_PASSWORD=password
+    depends_on:
+      - db
+
+  db:
+    image: mariadb:10.4
+    restart: unless-stopped
+    volumes:
+      - mariadb-data:/var/lib/mysql
+      - ../db:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: portfolio
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    depends_on:
+      - db
+
+volumes:
+  mariadb-data:
