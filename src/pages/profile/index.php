@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . '/../config/session_helper.php';
-require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../../config/session_helper.php';
+require_once __DIR__ . '/../../config/database.php';
 
 // 檢查是否已登入
 if (!is_logged_in()) {
@@ -28,7 +28,12 @@ if (isset($_GET['success'])) {
     $success_message = sanitize_input($_GET['success']);
 }
 
-include __DIR__ . '/../components/header.php';
+$page_title = "個人設定";
+$page_styles = [
+    '/src/pages/profile/style.css'
+];
+
+ob_start();
 ?>
 
 <div class="page-content profile-page">
@@ -98,6 +103,15 @@ include __DIR__ . '/../components/header.php';
                 </div>
 
                 <div class="form-group">
+                    <label for="display_name">顯示名稱：</label>
+                    <input type="text" id="display_name" name="display_name"
+                        value="<?php echo sanitize_input($user_data['display_name'] ?? ''); ?>"
+                        maxlength="50"
+                        placeholder="留空則使用使用者名稱">
+                    <small class="form-help">其他人會看到的名稱，最多50個字元（可選）</small>
+                </div>
+
+                <div class="form-group">
                     <label for="email">電子郵件：</label>
                     <input type="email" id="email" name="email"
                         value="<?php echo sanitize_input($user_data['email']); ?>" required>
@@ -160,4 +174,7 @@ include __DIR__ . '/../components/header.php';
     </div>
 </div>
 
-<?php include __DIR__ . '/../components/footer.php'; ?>
+<?php
+$page_content = ob_get_clean();
+include __DIR__ . '/../../layout/index.php';
+?>

@@ -1,7 +1,6 @@
 <?php
-require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../config/session_helper.php';
-include __DIR__ . '/../components/header.php';
+require_once __DIR__ . '/../../config/database.php';
+require_once __DIR__ . '/../../config/session_helper.php';
 
 $current_user = get_logged_in_user();
 
@@ -11,13 +10,35 @@ $messages = [];
 
 if ($pdo && !$db_error) {
     try {
-        // Fetch messages with user avatar, newest first
-        $stmt = $pdo->query("
-            SELECT m.author, m.content, m.timestamp, u.avatar 
+        // Fetch messages with user info, likes, dislikes, and user's current reaction
+        $current_user_id = $current_user ? $current_user['id'] : 0;
+        $stmt = $pdo->prepare("
+            SELECT m.id, m.author, m.content, m.timestamp, u.id as author_id, u.avatar, u.display_name as author_display_name,
+                   COALESCE(likes.count, 0) as likes,
+                   COALESCE(dislikes.count, 0) as dislikes,
+                   user_reaction.reaction_type as user_reaction
             FROM messages m 
             LEFT JOIN users u ON m.author = u.username 
+            LEFT JOIN (
+                SELECT message_id, COUNT(*) as count 
+                FROM message_reactions 
+                WHERE reaction_type = 'like' 
+                GROUP BY message_id
+            ) likes ON m.id = likes.message_id
+            LEFT JOIN (
+                SELECT message_id, COUNT(*) as count 
+                FROM message_reactions 
+                WHERE reaction_type = 'dislike' 
+                GROUP BY message_id
+            ) dislikes ON m.id = dislikes.message_id
+            LEFT JOIN (
+                SELECT message_id, reaction_type
+                FROM message_reactions
+                WHERE user_id = ?
+            ) user_reaction ON m.id = user_reaction.message_id
             ORDER BY m.timestamp DESC
         ");
+        $stmt->execute([$current_user_id]);
         $messages = $stmt->fetchAll();
     } catch (PDOException $e) {
         // Handle fetch error
@@ -28,6 +49,13 @@ if ($pdo && !$db_error) {
     $db_error = "Database connection is not available.";
 }
 
+$page_title = "留言板";
+$page_styles = [
+    '/src/pages/guestbook/style.css',
+    '/src/components/message-card/style.css'
+];
+
+ob_start();
 ?>
 
 <div class="page-content guestbook-page">
@@ -46,16 +74,8 @@ if ($pdo && !$db_error) {
     <!-- Message Submission Form -->
     <?php if ($current_user): ?>
         <!-- 已登入使用者 - 可以留言 -->
-        <form action="/submit_message.php" method="POST" class="guestbook-form content-card animate-fade-in-up" style="--card-index: 0;">
+        <form action="/submit_message" method="POST" class="guestbook-form content-card animate-fade-in-up" style="--card-index: 0;">
             <h3 class="card-title">留下訊息</h3>
-
-            <div class="form-group">
-                <label for="guest_name">你的名字：</label>
-                <input type="text" id="guest_name" name="guest_name"
-                    value="<?php echo sanitize_input($current_user['username']); ?>"
-                    readonly class="readonly-input">
-                <small class="form-help">已登入使用者自動填入</small>
-            </div>
 
             <div class="form-group">
                 <label for="guest_message">想說的話：</label>
@@ -86,15 +106,26 @@ if ($pdo && !$db_error) {
             <?php foreach ($messages as $index => $message): // Get index here 
             ?>
                 <?php
+                $message_id = $message['id'];
                 $content = $message['content'];
-                $author = $message['author'];
+                // 使用顯示名稱（如果有的話）
+                $author_user = [
+                    'username' => $message['author'],
+                    'display_name' => $message['author_display_name'] ?? null
+                ];
+                $author = get_user_display_name($author_user);
                 $avatar = $message['avatar'];
+                $author_id = $message['author_id'];
+                $likes = $message['likes'];
+                $dislikes = $message['dislikes'];
+                $user_reaction = $message['user_reaction'] ?? null;
+                $current_user_id = $current_user ? $current_user['id'] : null;
                 $dt = new DateTime($message['timestamp']);
                 $timestamp = $dt->format('Y-m-d H:i');
                 // Set the CSS variable inline for animation delay (start messages from index 1)
                 $style_attribute = 'style="--card-index: ' . ($index + 1) . ';"';
 
-                include __DIR__ . '/../components/message_card.php';
+                include __DIR__ . '/../../components/message-card/index.php';
                 ?>
             <?php endforeach; ?>
         <?php elseif (!$db_error): ?>
@@ -108,4 +139,11 @@ if ($pdo && !$db_error) {
 
 </div>
 
-<?php include __DIR__ . '/../components/footer.php'; ?>
+<?php
+$page_content = ob_get_clean();
+
+// 加入 JavaScript 檔案
+$page_scripts = '<script src="/src/pages/guestbook/guestbook.js"></script>';
+
+include __DIR__ . '/../../layout/index.php';
+?>

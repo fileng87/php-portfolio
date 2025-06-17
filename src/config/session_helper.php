@@ -14,17 +14,32 @@ function is_logged_in(): bool
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
-// 取得當前登入的使用者資訊
+// 取得當前登入的使用者資訊（從資料庫獲取最新資料）
 function get_logged_in_user(): ?array
 {
     if (!is_logged_in()) {
         return null;
     }
 
+    require_once __DIR__ . '/database.php';
+    $pdo = get_db_connection();
+    if ($pdo) {
+        try {
+            $stmt = $pdo->prepare("SELECT id, username, email, avatar, display_name FROM users WHERE id = ?");
+            $stmt->execute([$_SESSION['user_id']]);
+            return $stmt->fetch();
+        } catch (PDOException $e) {
+            error_log("Error fetching user data: " . $e->getMessage());
+        }
+    }
+
+    // 如果資料庫查詢失敗，回傳 session 中的基本資訊
     return [
         'id' => $_SESSION['user_id'],
         'username' => $_SESSION['username'] ?? '',
-        'email' => $_SESSION['email'] ?? ''
+        'email' => $_SESSION['email'] ?? '',
+        'avatar' => null,
+        'display_name' => null
     ];
 }
 
@@ -113,4 +128,13 @@ function validate_email(string $email): bool
 function sanitize_input(string $input): string
 {
     return htmlspecialchars(trim($input), ENT_QUOTES, 'UTF-8');
+}
+
+// 獲取用戶的顯示名稱（如果沒有設定顯示名稱則使用用戶名）
+function get_user_display_name($user): string
+{
+    if (!$user) return '匿名訪客';
+
+    // 如果有設定顯示名稱就使用顯示名稱，否則使用用戶名
+    return !empty($user['display_name']) ? $user['display_name'] : ($user['username'] ?? '未知用戶');
 }

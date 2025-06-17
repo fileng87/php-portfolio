@@ -1,0 +1,87 @@
+/* 首頁專屬樣式 */
+
+.hero-content {
+    width: 100%;
+    text-align: center;
+}
+
+.main-title {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+    color: #fff;
+}
+
+.main-title span {
+    display: inline-block;
+}
+
+.main-title .color-code {
+    background: linear-gradient(45deg, #3d5afe, #00bcd4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main-title .color-fun {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.main-title .emoji {
+    font-size: 1.2em;
+    margin-left: 0.2em;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #adb5bd;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 動畫延遲 */
+.main-title.animate-fade-in-up {
+    animation-delay: 0.2s;
+}
+
+.subtitle.animate-fade-in-up {
+    animation-delay: 0.4s;
+}
+
+/* 頁面訊息樣式 */
+.page-message {
+    background: rgba(15, 23, 42, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.success-message {
+    border-color: rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.1);
+}
+
+.success-message p {
+    color: #4ade80;
+    margin: 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+} 

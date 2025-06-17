@@ -16,34 +16,36 @@ if (preg_match('/\.(css|js|png|jpg|jpeg|gif|ico|svg)$/', $path)) {
     return false; // 讓 PHP 內建伺服器處理靜態檔案
 }
 
-// 定義路由規則
+// 定義路由規則 - 新模組化結構
 $routes = [
-    // 頁面路由
-    '' => 'src/pages/index.php',
-    'index.php' => 'src/pages/index.php',
-    'about' => 'src/pages/about.php',
-    'portfolio' => 'src/pages/portfolio.php',
-    'guestbook' => 'src/pages/guestbook.php',
-    'profile' => 'src/pages/profile.php',
+    // 頁面路由 - 使用新的模組化結構
+    '' => 'src/pages/home/index.php',
+    'index.php' => 'src/pages/home/index.php',
+    'about' => 'src/pages/about/index.php',
+    'portfolio' => 'src/pages/portfolio/index.php',
+    'guestbook' => 'src/pages/guestbook/index.php',
+    'profile' => 'src/pages/profile/index.php',
 
-    // 認證路由
-    'login' => 'src/auth/login.php',
-    'register' => 'src/auth/register.php',
+    // 認證路由 - 使用新的模組化結構
+    'login' => 'src/auth/login/index.php',
+    'register' => 'src/auth/register/index.php',
     'logout' => 'src/auth/logout.php',
 
-    // 動作路由
+    // 動作路由 - 保持原有結構
     'login_process' => 'src/auth/login_process.php',
     'register_process' => 'src/auth/register_process.php',
     'profile_process' => 'src/actions/profile_process.php',
-    'submit_message.php' => 'src/actions/submit_message.php',
+    'submit_message' => 'src/actions/submit_message.php',
+    'reaction_process' => 'src/actions/reaction_process.php',
+    'edit_message' => 'src/actions/edit_message_process.php',
 
     // 向後相容的 .php 路由
-    'about.php' => 'src/pages/about.php',
-    'portfolio.php' => 'src/pages/portfolio.php',
-    'guestbook.php' => 'src/pages/guestbook.php',
-    'profile.php' => 'src/pages/profile.php',
-    'login.php' => 'src/auth/login.php',
-    'register.php' => 'src/auth/register.php',
+    'about.php' => 'src/pages/about/index.php',
+    'portfolio.php' => 'src/pages/portfolio/index.php',
+    'guestbook.php' => 'src/pages/guestbook/index.php',
+    'profile.php' => 'src/pages/profile/index.php',
+    'login.php' => 'src/auth/login/index.php',
+    'register.php' => 'src/auth/register/index.php',
     'login_process.php' => 'src/auth/login_process.php',
     'register_process.php' => 'src/auth/register_process.php',
     'profile_process.php' => 'src/actions/profile_process.php',

@@ -1,0 +1,150 @@
+/* Profile Page Styles */
+.profile-page {
+    min-height: calc(100vh - 120px);
+}
+
+.profile-terminal-header {
+    color: #5eead4;
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.profile-terminal-header .prompt-icon {
+    color: #ccd6f6;
+    margin-right: 0.5rem;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.avatar-section,
+.profile-info,
+.password-section,
+.account-info {
+    background: rgba(10, 10, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.avatar-display {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.current-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(77, 171, 247, 0.5);
+    box-shadow: 0 4px 16px rgba(77, 171, 247, 0.2);
+}
+
+.default-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(77, 171, 247, 0.2) 0%, rgba(116, 192, 252, 0.2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: 3px solid rgba(77, 171, 247, 0.3);
+}
+
+.avatar-icon {
+    font-size: 3rem;
+    color: #4dabf7;
+}
+
+.avatar-form,
+.profile-form,
+.password-form {
+    margin-top: 1rem;
+}
+
+.file-input {
+    background: rgba(20, 20, 30, 0.8) !important;
+    border: 2px solid rgba(77, 171, 247, 0.3) !important;
+    color: #e0e0e0 !important;
+    padding: 0.75rem !important;
+    border-radius: 8px !important;
+    width: 100% !important;
+    font-size: 0.95rem !important;
+    transition: all 0.3s ease !important;
+}
+
+.file-input:focus {
+    border-color: #4dabf7 !important;
+    box-shadow: 0 0 0 3px rgba(77, 171, 247, 0.1) !important;
+    outline: none !important;
+}
+
+.info-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    color: #adb5bd;
+    font-weight: 500;
+}
+
+.info-value {
+    color: #e0e0e0;
+    font-weight: 600;
+}
+
+/* Responsive adjustments for profile page */
+@media (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 1rem;
+    }
+    
+    .avatar-section,
+    .profile-info,
+    .password-section,
+    .account-info {
+        padding: 1.5rem;
+    }
+    
+    .current-avatar,
+    .default-avatar {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .avatar-icon {
+        font-size: 2.5rem;
+    }
+    
+    .profile-terminal-header {
+        font-size: 1rem;
+    }
+} 

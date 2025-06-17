@@ -1,1 +1,0 @@
-<div id="fixed-gradient-bg"></div>

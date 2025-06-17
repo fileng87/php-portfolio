@@ -1,0 +1,145 @@
+/* Guestbook Page Styles */
+.guestbook-page .page-description {
+    text-align: center;
+    color: #adb5bd;
+    margin-bottom: 3rem;
+}
+
+.guestbook-terminal-header {
+    margin-bottom: 3rem;
+}
+
+.guestbook-form .card-title {
+    margin-bottom: 1.5rem;
+}
+
+.guestbook-messages {
+    margin-top: 3rem;
+}
+
+.message-content {
+    color: #adb5bd;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.message-timestamp {
+    font-style: italic;
+    font-size: 0.85rem;
+    color: #8892b0;
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.message-author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.message-avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.message-avatar-placeholder .avatar-icon {
+    font-size: 1.2rem;
+}
+
+.no-messages-placeholder {
+    text-align: center;
+}
+
+.no-messages-placeholder p {
+    color: #adb5bd;
+    margin: 0;
+}
+
+/* 登入提示樣式 */
+.login-required {
+    text-align: center;
+}
+
+.login-prompt {
+    padding: 1rem 0;
+    text-align: center;
+    width: 100%;
+}
+
+.login-prompt p {
+    margin: 1rem auto;
+    color: #adb5bd;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 400px;
+}
+
+.login-prompt p:first-child {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #e0e0e0;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.login-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.login-actions .submit-button {
+    min-width: 160px;
+    text-align: center;
+}
+
+.login-actions .link-button {
+    min-width: 160px;
+    text-align: center;
+    padding: 0.75rem 1rem;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .login-actions {
+        gap: 0.75rem;
+    }
+    
+    .login-actions .submit-button,
+    .login-actions .link-button {
+        width: 100%;
+        max-width: 280px;
+    }
+}
+
+/* Staggering animation delays for guestbook cards */
+.guestbook-page .content-card.animate-fade-in-up {
+    /* Adjust delay based on item order */
+    /* --card-index should be set inline via PHP */
+    animation-delay: calc(0.3s + var(--card-index, 0) * 0.1s);
+} 

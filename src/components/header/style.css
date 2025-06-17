@@ -1,0 +1,190 @@
+/* Header 組件樣式 */
+
+header {
+    background-color: rgba(10, 10, 20, 0.5);
+    color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    flex: 1;
+    text-align: left;
+}
+
+.header-left .logo {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.header-center {
+    flex: 2;
+    text-align: center;
+}
+
+.header-center nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.header-center nav ul li {
+    margin: 0 1.5rem;
+}
+
+.header-center nav ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0;
+    display: block;
+}
+
+.header-center nav ul li a:hover,
+.header-center nav ul li a.active {
+    color: #fff;
+}
+
+.header-right {
+    flex: 1;
+    text-align: right;
+}
+
+.header-right-content {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.header-right a,
+.header-right .icon-button {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1rem;
+}
+
+.header-right a:hover,
+.header-right .icon-button:hover {
+    color: #fff;
+}
+
+/* 認證按鈕樣式 */
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.auth-button {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: inline-block;
+}
+
+.login-button {
+    color: #e0e0e0;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.login-button:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.register-button {
+    color: #fff;
+    background: linear-gradient(45deg, #3d5afe, #00bcd4);
+    border-color: transparent;
+}
+
+.register-button:hover {
+    color: #fff;
+    background: linear-gradient(45deg, #5c6bc0, #26c6da);
+}
+
+/* 使用者選單樣式 */
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.user-greeting {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.profile-button,
+.logout-button {
+    padding: 0.5rem;
+    color: #e0e0e0;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.profile-button:hover {
+    color: #4dabf7;
+    background-color: rgba(77, 171, 247, 0.1);
+}
+
+.logout-button:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .auth-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .auth-button {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .user-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-end;
+    }
+    
+    .user-greeting {
+        font-size: 0.8rem;
+    }
+} 

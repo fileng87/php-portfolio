@@ -17,6 +17,7 @@ if (!verify_csrf_token($csrf_token)) {
 
 // 取得並清理輸入資料
 $username = sanitize_input($_POST['username'] ?? '');
+$display_name = sanitize_input($_POST['display_name'] ?? '');
 $email = sanitize_input($_POST['email'] ?? '');
 $password = $_POST['password'] ?? '';
 $confirm_password = $_POST['confirm_password'] ?? '';
@@ -102,10 +103,14 @@ try {
     // 建立新使用者
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash) VALUES (:username, :email, :password_hash)");
+    // 如果顯示名稱為空，則設為 NULL
+    $display_name_value = !empty($display_name) ? $display_name : null;
+
+    $stmt = $pdo->prepare("INSERT INTO users (username, email, password_hash, display_name) VALUES (:username, :email, :password_hash, :display_name)");
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':password_hash', $password_hash);
+    $stmt->bindParam(':display_name', $display_name_value);
 
     if ($stmt->execute()) {
         // 註冊成功，重定向到登入頁面

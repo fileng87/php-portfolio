@@ -1,0 +1,10 @@
+/* Footer 組件樣式 */
+
+footer {
+    background-color: transparent;
+    color: #adb5bd;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: auto;
+    font-size: 0.9rem;
+} 

@@ -1,5 +1,16 @@
-<?php include __DIR__ . '/../components/header.php'; ?>
+<?php
 
+/**
+ * About 頁面模組
+ */
+
+// 設定頁面標題和樣式
+$page_title = '關於我 - 鳳梨的個人網站';
+$page_styles = ['/src/pages/about/style.css'];
+
+// 使用 ob_start 捕獲頁面內容
+ob_start();
+?>
 <div class="page-content about-page">
     <div class="terminal-header animate-fade-in-up">
         <span>&gt;_</span> $ whoami <span class="cursor"></span>
@@ -7,13 +18,13 @@
 
     <div class="about-grid">
         <!-- Avatar Card -->
-        <div class="about-card avatar-card animate-fade-in-up" style="--card-index: 0;">
+        <div class="content-card avatar-card animate-fade-in-up" style="--card-index: 0;">
             <h3 class="card-title">./avatar.png</h3>
-            <img src="https://www.gravatar.com/avatar/294e918fb7535a26528daa36902007b2?s=400" alt="我的頭像" class="profile-avatar" /> <!-- 請替換成你的頭像路徑 -->
+            <img src="https://www.gravatar.com/avatar/294e918fb7535a26528daa36902007b2?s=400" alt="我的頭像" class="profile-avatar" />
         </div>
 
         <!-- Personal Info Card -->
-        <div class="about-card info-card animate-fade-in-up" style="--card-index: 1;">
+        <div class="content-card info-card animate-fade-in-up" style="--card-index: 1;">
             <h3 class="card-title">./personal_info.txt</h3>
             <p>
                 我喜歡研究奇奇怪怪的東西，是真的奇奇怪怪的東西，像是會嘴砲你的機器人之類的
@@ -25,7 +36,7 @@
         </div>
 
         <!-- Skills Card -->
-        <div class="about-card skills-card animate-fade-in-up" style="--card-index: 2;">
+        <div class="content-card skills-card animate-fade-in-up" style="--card-index: 2;">
             <h3 class="card-title">./skills.md</h3>
             <div class="skills-columns">
                 <div>
@@ -59,7 +70,7 @@
         </div>
 
         <!-- GitHub Stats Card (Placeholder) -->
-        <div class="about-card stats-card animate-fade-in-up" style="--card-index: 3;">
+        <div class="content-card stats-card animate-fade-in-up" style="--card-index: 3;">
             <h3 class="card-title">./github_stats.md</h3>
             <ul class="stats-list">
                 <li><span>Total Stars</span><span>6</span></li>
@@ -71,7 +82,7 @@
         </div>
 
         <!-- Coding Time Card (Placeholder) -->
-        <div class="about-card stats-card animate-fade-in-up" style="--card-index: 4;">
+        <div class="content-card stats-card animate-fade-in-up" style="--card-index: 4;">
             <h3 class="card-title">./coding_time.md</h3>
             <ul class="stats-list">
                 <li><span>Total Time</span><span>1,125h 4m</span></li>
@@ -84,5 +95,9 @@
         </div>
     </div>
 </div>
+<?php
+$page_content = ob_get_clean();
 
-<?php include __DIR__ . '/../components/footer.php'; ?>
+// 載入佈局
+include __DIR__ . '/../../layout/index.php';
+?>

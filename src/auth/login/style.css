@@ -1,0 +1,56 @@
+/* Auth Page Styles - Login */
+.auth-page {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* 全寬度按鈕樣式 */
+.auth-page .form-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    align-items: stretch;
+}
+
+.auth-page .form-actions .submit-button,
+.auth-page .form-actions .link-button {
+    width: 100%;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+}
+
+.auth-info ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.auth-info li {
+    margin-bottom: 0.5rem;
+    color: #adb5bd;
+}
+
+.demo-info {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.demo-info h5 {
+    margin: 0 0 0.5rem 0;
+    color: #e0e0e0;
+}
+
+.demo-info p {
+    margin: 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .auth-page {
+        padding: 0 1rem;
+    }
+} 

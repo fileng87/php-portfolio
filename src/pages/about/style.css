@@ -1,0 +1,145 @@
+/* About 頁面專屬樣式 */
+
+.about-page {
+    width: 100%;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+}
+
+/* 使用統一的 content-card 樣式，只需要特殊的佈局樣式 */
+
+.avatar-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    grid-column: span 1;
+}
+
+.profile-avatar {
+    display: block;
+    max-width: 100px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.info-card {
+    grid-column: span 5;
+}
+
+.info-card p {
+    color: #e0e0e0;
+    line-height: 1.7;
+    font-size: 0.95rem;
+}
+
+.skills-card {
+    grid-column: span 2;
+}
+
+.skills-card h4 {
+    color: #ccd6f6;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.skills-card ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.skills-card li {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.skills-columns {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+
+.skills-columns > div {
+    flex: 1;
+}
+
+.stats-card {
+    grid-column: span 2;
+}
+
+.stats-card .stats-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.stats-card .stats-list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+.stats-card .stats-list li span:first-child {
+    color: #8892b0;
+}
+
+.stats-card .stats-list li span:last-child {
+    color: #64ffda;
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+}
+
+/* 動畫延遲 */
+.about-grid .content-card.animate-fade-in-up {
+    animation-delay: calc(0.3s + var(--card-index, 0) * 0.1s);
+}
+
+/* 響應式設計 */
+@media (max-width: 1024px) {
+    .about-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .avatar-card {
+        grid-column: span 1;
+    }
+    
+    .info-card {
+        grid-column: span 2;
+    }
+    
+    .skills-card {
+        grid-column: span 3;
+    }
+    
+    .stats-card {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-card {
+        grid-column: span 1;
+    }
+    
+    .skills-columns {
+        flex-direction: column;
+        gap: 1rem;
+    }
+} 

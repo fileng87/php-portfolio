@@ -112,6 +112,7 @@ function handle_avatar_update($pdo, $current_user)
 function handle_profile_update($pdo, $current_user)
 {
     $username = sanitize_input($_POST['username'] ?? '');
+    $display_name = sanitize_input($_POST['display_name'] ?? '');
     $email = sanitize_input($_POST['email'] ?? '');
 
     // 驗證輸入
@@ -149,8 +150,9 @@ function handle_profile_update($pdo, $current_user)
     }
 
     // 更新資料庫
-    $stmt = $pdo->prepare("UPDATE users SET username = ?, email = ?, updated_at = NOW() WHERE id = ?");
-    $stmt->execute([$username, $email, $current_user['id']]);
+    $display_name_value = !empty($display_name) ? $display_name : null;
+    $stmt = $pdo->prepare("UPDATE users SET username = ?, display_name = ?, email = ?, updated_at = NOW() WHERE id = ?");
+    $stmt->execute([$username, $display_name_value, $email, $current_user['id']]);
 
     // 更新 session 中的使用者資料
     $_SESSION['user']['username'] = $username;

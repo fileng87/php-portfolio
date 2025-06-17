@@ -1,0 +1,206 @@
+/* Message Card 組件樣式 */
+
+/* 留言卡片標題樣式 */
+.message-item .card-title {
+    font-family: inherit;
+    font-size: 1.1rem;
+    color: #ccd6f6;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0.5rem;
+}
+
+/* 留言標題區域 */
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.message-author-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.message-avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.message-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.message-timestamp {
+    font-size: 0.8rem;
+    color: #8892b0;
+    font-family: "Courier New", Courier, monospace;
+}
+
+.edit-message-btn {
+    background: none;
+    border: none;
+    color: #8892b0;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.edit-message-btn:hover {
+    color: #5eead4;
+    background: rgba(94, 234, 212, 0.1);
+}
+
+/* 留言內容 */
+.message-content {
+    color: #e0e0e0;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    word-wrap: break-word;
+}
+
+/* 編輯表單樣式 */
+.edit-form {
+    margin-bottom: 1rem;
+}
+
+.edit-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: rgba(20, 20, 30, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 0.75rem;
+    color: #e0e0e0;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.edit-textarea:focus {
+    outline: none;
+    border-color: #5eead4;
+    box-shadow: 0 0 0 3px rgba(94, 234, 212, 0.1);
+}
+
+.edit-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.edit-actions button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* 留言操作區域 */
+.message-actions {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.reaction-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.reaction-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    color: #8892b0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.reaction-btn:hover {
+    border-color: #5eead4;
+    color: #5eead4;
+    background: rgba(94, 234, 212, 0.05);
+}
+
+.reaction-btn.active {
+    border-color: #5eead4;
+    color: #5eead4;
+    background: rgba(94, 234, 212, 0.1);
+}
+
+.reaction-icon {
+    font-size: 1rem;
+}
+
+.reaction-count {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.8rem;
+    min-width: 1.5rem;
+    text-align: center;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .message-header {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .message-meta {
+        align-self: flex-start;
+    }
+    
+    .reaction-buttons {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .reaction-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+    
+    .edit-textarea {
+        min-height: 80px;
+        font-size: 0.9rem;
+    }
+    
+    .edit-actions {
+        justify-content: stretch;
+    }
+    
+    .edit-actions button {
+        flex: 1;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.85rem;
+    }
+} 

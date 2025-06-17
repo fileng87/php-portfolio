@@ -25,10 +25,8 @@ $style_attribute = $style_attribute ?? '';
 
 ?>
 
-<div class="project-card portfolio-style-card animate-fade-in-up" <?php echo $style_attribute; ?>>
-    <div class="card-header">
-        <h3 class="project-title"><?php echo htmlspecialchars($title); ?></h3>
-    </div>
+<div class="content-card project-card animate-fade-in-up" <?php echo $style_attribute; ?>>
+    <h3 class="card-title"><?php echo htmlspecialchars($title); ?></h3>
     <div class="card-body">
         <p class="project-description"><?php echo htmlspecialchars($description); ?></p>
         <div class="project-stats">
