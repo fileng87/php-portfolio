@@ -62,4 +62,4 @@ DB_ROOT_PASSWORD=root_password # 資料庫 root 使用者密碼 (用於初始化
 ## 📝 資料庫
 
 *   使用 MariaDB，服務名為 `db`。
-*   資料表結構由 `.devcontainer/db/init.sql` 在首次啟動時初始化。
+*   資料表結構由 `db/init.sql` 在首次啟動時初始化。
