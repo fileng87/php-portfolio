@@ -1,4 +1,4 @@
-<?php include 'components/header.php'; ?>
+<?php include __DIR__ . '/../components/header.php'; ?>
 
 <?php
 // Define project data
@@ -53,10 +53,10 @@ $projects = [
             // Set the CSS variable inline for animation delay
             $style_attribute = 'style="--card-index: ' . $index . ';"';
 
-            include 'components/project_card.php';
+            include __DIR__ . '/../components/project_card.php';
             ?>
         <?php endforeach; ?>
     </div>
 </div>
 
-<?php include 'components/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>

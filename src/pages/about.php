@@ -1,4 +1,4 @@
-<?php include 'components/header.php'; ?>
+<?php include __DIR__ . '/../components/header.php'; ?>
 
 <div class="page-content about-page">
     <div class="terminal-header animate-fade-in-up">
@@ -85,4 +85,4 @@
     </div>
 </div>
 
-<?php include 'components/footer.php'; ?>
+<?php include __DIR__ . '/../components/footer.php'; ?>
